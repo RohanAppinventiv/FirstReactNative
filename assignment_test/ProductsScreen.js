@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
+import { View, SafeAreaView, StyleSheet } from 'react-native';
 import Toolbar from './components/Toolbar';
-import AppColor from './Utils/ColorScheme';
 import CartFooter from './components/CartFooter';
 import ProductList from './components/ProductList';
+import DefaultAppTheme from './Utils/themes/AppTheme';
 
 const ProductScreen = () => {
 
     const [totalAmount, setTotalAmount] = useState(0);
     const [totalItems, setTotalItems] = useState(0);
 
-    const onCartTotalChanged = (totalAmount, totalItem) =>{
+    const onCartTotalChanged = (totalAmount, totalItem) => {
         console.log("OnCartChanged: ", totalAmount, totalItem)
         setTotalAmount(totalAmount)
         setTotalItems(totalItem)
@@ -22,14 +22,14 @@ const ProductScreen = () => {
 
     return (
         <>
-        <SafeAreaView style={style.safeAreaTop} />
-        <SafeAreaView style={style.safeAreaBottom}>
-            <View style={style.parent}>
-                <Toolbar />
-                 <ProductList onCartTotalChanges={onCartTotalChanged}/>
-                 {totalItems > 0 && (<CartFooter totalItem={totalItems} totalPrice={totalAmount}/>)}
-            </View>
-        </SafeAreaView>
+          <SafeAreaView style={style.safeAreaTop} />
+            <SafeAreaView style={style.safeAreaBottom}>
+                <View style={style.parent}>
+                    <Toolbar />
+                    <ProductList onCartTotalChanges={onCartTotalChanged} />
+                    {totalItems > 0 && (<CartFooter totalItem={totalItems} totalPrice={totalAmount} />)}
+                </View>
+            </SafeAreaView>
         </>
     )
 
@@ -38,15 +38,15 @@ const ProductScreen = () => {
 const style = StyleSheet.create({
     safeAreaTop: {
         flex: 0,
-        backgroundColor: AppColor.secondary
+        backgroundColor: DefaultAppTheme.colors.secondary
     },
     safeAreaBottom: {
         flex: 1,
-        backgroundColor: AppColor.colorAccent
+        backgroundColor: DefaultAppTheme.colors.colorAccent
     },
     parent: {
         flex: 1,
-        backgroundColor: AppColor.primary
+        backgroundColor: DefaultAppTheme.colors.primaryColor
     },
 })
 
